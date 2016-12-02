@@ -1,0 +1,24 @@
+S -> NAME Sep VP
+NAME -> Sofia
+Sep -> ,
+NP -> Prep Det NBar
+NP -> Det NBar
+NP -> Adv Noun
+NP -> Adv Style Noun
+NBar -> Adj Noun
+NBar -> Noun
+NBar -> Noun Prep
+VP -> Verb NP
+Det -> a
+Det -> an
+Det -> the
+Adj -> old
+Prep -> on
+Prep -> off
+Noun -> song
+Noun -> music
+Verb -> turn
+Verb -> play
+Adv -> some
+Style -> rock
+Style -> dance

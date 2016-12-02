@@ -1,0 +1,4 @@
+S -> COMMAND
+COMMAND ->  GR | NNP | Introdution
+WORD -> work | player
+NAME -> rodrigo | amanda

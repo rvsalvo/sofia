@@ -1,0 +1,9 @@
+action VB NN
+action VB JJ NN
+action VB NN Option
+action VB NN NNS Option
+action VB JJ NNS Option
+action VB NN JJ NNS Option
+action VB Option
+personal_question WP VBP PRP
+question WP VBP POPR NN 

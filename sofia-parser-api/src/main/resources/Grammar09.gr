@@ -1,0 +1,28 @@
+S -> COMMAND
+COMMAND -> VP | GR | NNP | Introdution
+Introdution -> POPR NN VBP Name | PRP VBP Name | PRP VB VB1 DT NN
+NP -> RP DT NBar | DT NBar | RB NN | RB JJ NN | RP Option | RP NNS IN Option | RP JJ NNS IN Option | JJ NN | Option
+NNP -> WP VBP PRP | WP VBP PRP Marker | WP VBP POPR NN | WP VBP POPR NN Marker
+NBar -> JJ NN | NN | NN RP | NN RP Option | NN RP NNS IN Option | NN RP JJ NNS IN Option
+VP -> VB NP
+GR -> Greeting Sep NNP | GReeting
+Option -> #OPTION
+DT -> a | an | the
+RP -> on | off | for
+NN -> song | name | music | game | web | computer
+NNS ->  images
+VB1 -> TO VB 
+VB -> turn | search | play | stop
+VBP -> is | are | am | need
+TO -> to
+RB -> some
+JJ -> rock | dance | small | big | large | pop
+Greeting -> hi | hello
+PRP -> I | you | he
+POPR -> my | your
+WP -> what | how |who
+Marker -> ! | ?
+Sep -> , 
+Name -> #NAME
+IN -> in | of | with
+JJR -> smaller | bigger 

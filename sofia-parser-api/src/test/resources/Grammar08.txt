@@ -1,0 +1,60 @@
+S -> COMMAND
+COMMAND -> VP
+COMMAND -> Gr
+COMMAND -> NNP
+COMMAND -> Introdution
+Introdution -> Pronoun Noun Verb Name
+Introdution -> Pronoun Verb Name
+Introdution -> Pronoun Verb Verb1 Det Noun
+NP -> Prep Det NBar
+NP -> Det NBar
+NP -> Adv Noun
+NP -> Adv Style Noun
+NNP -> AdvInt Verb Pronoun
+NNP -> AdvInt Verb Pronoun Marker
+NNP -> AdvInt Verb Pronoun Noun
+NNP -> AdvInt Verb Pronoun Noun Marker
+NBar -> Adj Noun
+NBar -> Noun
+NBar -> Noun Prep
+NBar -> Noun Prep Option
+VP -> Verb NP
+Option -> #OPTION
+Det -> a
+Det -> an
+Det -> the
+Adj -> old
+Prep -> on
+Prep -> off
+Prep -> for
+Noun -> song
+Noun -> name
+Noun -> music
+Noun -> game
+Noun -> web
+Verb1 -> Inf Verb 
+Verb -> turn
+Verb -> search
+Verb -> need
+Verb -> play
+Verb -> is
+Verb -> are
+Verb -> am
+Inf -> to
+Adv -> some
+Style -> rock
+Style -> dance
+Greeting -> hi
+Greeting -> hello
+Gr -> Greeting Sep NNP 
+Gr -> Greeting
+Pronoun -> i 
+Pronoun -> you
+Pronoun -> my
+Pronoun -> your
+AdvInt -> what
+AdvInt -> how
+Marker -> !
+Marker -> ?
+Sep -> , 
+Name -> #NAME

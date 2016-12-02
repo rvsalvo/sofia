@@ -1,0 +1,2 @@
+DECISION -> <Decision>\w+
+ATTRIBUTE -> <AttributeValue DataType="http://www.w3.org/2001/XMLSchema#string">[a-zA-Z_0-9-]*

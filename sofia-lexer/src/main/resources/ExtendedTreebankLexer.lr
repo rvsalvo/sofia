@@ -1,0 +1,46 @@
+PARENTESIS -> [(|)]
+IDENTIFIER->(-\w+-)
+LETTER -> [a-zA-ZàáãéíçêéúóõÁÁÃÉÍÓÚÕÊÇ]
+WORD -> {LETTER}+(?!['t])|([\u00AD\u0237-\u024F\u02C2-\u02C5\u02D2-\u02DF\u02E5-\u02FF\u0300-\u036F\u0370-\u037D\u0384\u0385\u03CF\u03F6\u03FC-\u03FF\u0483-\u0487\u04CF\u04F6-\u04FF\u0510-\u0525\u055A-\u055F\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0615-\u061A\u063B-\u063F\u064B-\u065E\u0670\u06D6-\u06EF\u06FA-\u06FF\u070F\u0711\u0730-\u074F\u0750-\u077F\u07A6-\u07B1\u07CA-\u07F5\u07FA\u0900-\u0903\u093C\u093E-\u094E\u0951-\u0955\u0962-\u0963\u0981-\u0983\u09BC-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u0A01-\u0A03\u0A3C\u0A3E-\u0A4F\u0A81-\u0A83\u0ABC-\u0ACF\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0C01-\u0C03\u0C3E-\u0C56\u0D3E-\u0D44\u0D46-\u0D48\u0E30-\u0E3A\u0E47-\u0E4E\u0EB1-\u0EBC\u0EC8-\u0ECD])+ 
+OTHERWORD -> {WORD}\-{WORD}
+SWORD -> [A-Za-z\u00AD]*[A-MO-Za-mo-z](\u00AD)*
+, -> [,]
+END_OF_SENTENCE -> !|\.|\?
+END_OF_SENTENCE2 -> ({END_OF_SENTENCE})+
+DIGIT -> [\u0030-\u0039]
+DATE -> {DIGIT}{1,2}[\-\/]{DIGIT}{1,2}[\-\/]{DIGIT}{2,4}
+NUM -> {DIGIT}+ | {DIGIT}*([.:,\u00AD\u066B\u066C]{DIGIT}+)+
+TWITTER_NAME -> @[a-zA-Z_][a-zA-Z_0-9]*
+TWITTER_CATEGORY -> #{WORD}
+EMAIL -> [a-zA-Z0-9][^ \t\n\f\r\"<>|()\u00A0]*@([^\t\n\f\r\"<>|().\u00A0]+\.)*([^\t\n\f\r\"<>|().\u00A0]+)
+SPACE -> [ \t\u00A0\u2000-\u200A\u3000] -> SKIP
+NEWLINE -> \n|\r|\r?\n|\u2028 -> SKIP
+SPACENL -> ({SPACE}|{NEWLINE}) -> SKIP
+APOS -> ['\u0092\u2019]|&apos;
+APOSETCETERA -> {APOS}|[\u0091\u2018\u201B]
+HTHING -> [A-Za-z0-9][A-Za-z0-9.,\u00AD]*(-([A-Za-z0-9\u00AD]+|{ACRO}\.))+
+REDAUX -> ({APOS})([msdMSD]|re|ve|ll) -> SKIP_FORWARD
+SREDAUX -> n{APOSETCETERA}t -> SKIP_FORWARD
+ACRO -> [A-Za-z](\.[A-Za-z])+|(Canada|Sino|Korean|EU|Japan|non)-U\.S|U\.S\.-(U\.K|U\.S\.S\.R)
+ABTITLE -> Mr|Mrs|Ms|[M]iss|Drs?|Profs?|Sens?|Reps?|Attys?|Lt|Col|Gen|Messrs|Govs?|Adm|Rev|Maj|Sgt|Cpl|Pvt|Mt|Capt|Ste?|Ave|Pres|Lieut|Hon|Brig|Co?mdr|Pfc|Spc|Supts?|Det
+ABPTIT -> Jr|Sr|Bros|(Ed|Ph)\.D|Blvd|Rd|Esq
+ABCOMP -> Inc|Cos?|Corp|Pp?tys?|Ltd|Plc|Bancorp|Dept|Bhd|Assn|Univ|Intl|Sys
+ABCOMP2 -> Invt|Elec|Natl|M[ft]g
+ABNUM -> Nos?|Prop|Ph|tel|est|ext|sq|ft
+ABMONTH -> Jan|Feb|Mar|Apr|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec
+ABDAYS -> Mon|Tue|Tues|Wed|Thu|Thurs|Fri
+ABSTATE -> Ala|Ariz|[A]rk|Calif|Colo|Conn|Dak|Del|Fla|Ga|[I]ll|Ind|Kans?|Ky|La|[M]ass|Md|Mich|Minn|[M]iss|Mo|Mont|Neb|Nev|Okla|[O]re|Pa|Penn|Tenn|Tex|Va|Vt|[W]ash|Wisc?|Wyo
+ABBREV1 -> ({ABMONTH}|{ABDAYS}|{ABSTATE}|{ABCOMP}|{ABNUM}|{ABPTIT}|etc|al|seq)\.
+ABBREV4 -> [A-Za-z]|{ABTITLE}|vs|Alex|Wm|Jos|Cie|a\.k\.a|cf|TREAS|{ACRO}|{ABCOMP2}
+ABBREV2 -> {ABBREV4}\.
+ACRONYM -> ({ACRO}\.)(?!({SPACENL}({NEWLINE}|([A]bout|[A]ccording|[A]dditionally|[A]fter|[A]n|[A]|[A]s|[A]t|[B]ut|[E]arlier|[H]e|[H]er|[H]ere|[H]owever|[I]f|[I]n|[I]t|[L]ast|[M]any|[M]ore|[M]r\.|[M]s\.|[N]ow|[O]nce|[O]ne|[O]ther|[O]ur|[S]he|[S]ince|[S]o|[S]ome|[S]uch|[T]hat|[T]he|[T]hen|[T]here|[T]hese|[T]hey|[T]his|[W]e|[W]hen|[W]hile|[W]hat|[Y]et|[Y]ou){SPACENL}))) -> SKIP_FORWARD
+QUOTES -> {APOS}|''|[`\u2018\u2019\u201A\u201B\u201C\u201D\u0091\u0092\u0093\u0094\u201E\u201F\u2039\u203A\u00AB\u00BB]{1,2}
+DBLQUOT -> \"|&quot;
+#SUBSUPNUM = [\u207A\u207B\u208A\u208B]?([\u2070\u00B9\u00B2\u00B3\u2074-\u2079]+|[\u2080-\u2089]+)
+FRAC -> ({DIGIT}{1,4}[- \u00A0])?{DIGIT}{1,4}(\\?\/|\u2044){DIGIT}{1,4}
+FRACSTB3 -> ({DIGIT}{1,4}-)?{DIGIT}{1,4}(\\?\/|\u2044){DIGIT}{1,4}
+FRAC2 -> [\u00BC\u00BD\u00BE\u2153-\u215E]
+DOLSIGN -> ([A-Z]*\$|#)
+DOLSIGN2 -> [\u00A2\u00A3\u00A4\u00A5\u0080\u20A0\u20AC\u060B\u0E3F\u20A4\uFFE0\uFFE1\uFFE5\uFFE6]
+SPLET -> &[aeiouAEIOU](acute|grave|uml);
+MISCSYMBOL -> [*+%&~\^|\\¦\u00A7\u00A9\u00AC\u00AE-\u00B0-\u00B3\u00B4-\u00BA\u00D7\u00F7\u0387\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0600-\u0603\u0606-\u060A\u060C\u0614\u061B\u061E\u066A\u066D\u0703-\u070D\u07F6\u07F7\u07F8\u0964\u0965\u0E4F\u1FBD\u2016\u2017\u2020-\u2023\u2030-\u2038\u203B\u203E-\u2042\u2044\u207A-\u207F\u208A-\u208E\u2100-\u214F\u2190-\u21FF\u2200-\u2BFF\u3012\u30FB\uFF01-\uFF0F\uFF1A-\uFF20\uFF3B-\uFF40\uFF5B-\uFF65\uFF65]

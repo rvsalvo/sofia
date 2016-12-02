@@ -1,0 +1,3 @@
+END_OF_SENTENCE -> !|\.|\?
+DIGIT -> [\u0030-\u0039]
+FRAC -> ({DIGIT}{1,4}[-\u00A0])?{DIGIT}{1,4}(\\?\/|/){DIGIT}{1,4}

@@ -1,0 +1,17 @@
+S -> NP VP
+NP -> Det NBar
+NBar -> Adj Noun
+NBar -> Noun
+NBar -> Adj
+VP -> Verb
+VP -> Verb NP
+Det -> a
+Det -> an
+Det -> the
+Adj -> old
+Noun -> man
+Noun -> men
+Noun -> ship
+Noun -> ships
+Verb -> man
+Verb -> mans
