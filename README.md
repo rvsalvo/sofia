@@ -1,1 +1,4 @@
-# sofia
+sofia-project
+=============
+
+Statistical NLP Project
