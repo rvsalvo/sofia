@@ -1,0 +1,152 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	
+    <parent>
+        <groupId>br.com.sofia</groupId>
+        <artifactId>sofia-project</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    
+    <artifactId>sofia-invoker</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <packaging>jar</packaging>
+    <name>Sofia Invoker</name>	
+	
+    <developers>
+        <developer>
+            <name>Rodrigo Salvo</name>
+            <email>rsalvo.br@gmail.com</email>
+        </developer>
+    </developers>	
+    
+    <repositories>
+        <repository>
+            <id>mvnrepository.com</id>
+            <name>mvnrepository.com</name>
+            <url>http://mvnrepository.com</url>
+        </repository>
+    </repositories>  		
+
+	<dependencies>
+
+		<dependency>
+			<groupId>wsdl4j</groupId>
+			<artifactId>wsdl4j</artifactId>
+		</dependency>	
+	
+		<!-- CXF -->
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-local</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-jms</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-management</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-common-utilities</artifactId>
+		</dependency>		
+		
+		<dependency>
+		    <groupId>org.apache.activemq</groupId>
+		    <artifactId>activemq-core</artifactId>
+		    <version>5.5.0</version>
+		    <scope>provided</scope>
+		</dependency>	
+		
+		<!--  log4j -->
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.16</version>
+			<scope>provided</scope>					
+		</dependency>			
+									
+		<!-- JUNIT -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.2</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	
+    <profiles>
+	  <profile>
+	    <id>development</id>
+		<activation>
+      		<activeByDefault>true</activeByDefault>
+    	</activation>	    
+		<properties>
+        	<environment.type>development</environment.type>
+    	</properties>
+	  </profile>
+	  <profile>
+	    <id>production</id>
+		<properties>
+        	<environment.type>production</environment.type>
+    	</properties>
+	  </profile>
+	  <profile>
+	    <id>test</id>
+		<properties>
+        	<environment.type>test</environment.type>
+    	</properties>
+	  </profile>	  
+	</profiles>    	
+
+	<build>	
+	    <resources>
+		  <resource>
+			<directory>src/main/resources</directory>
+			<filtering>false</filtering>
+		  </resource>
+		</resources>	
+		<plugins>
+		
+			<!-- copy dependencies -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<version>2.7</version>
+				<executions>
+				  <execution>
+					<id>copy-dependencies</id>
+					<phase>package</phase>
+					<goals>
+					  <goal>copy-dependencies</goal>
+					</goals>
+					<configuration>
+					  <outputDirectory>${project.build.directory}/lib</outputDirectory>
+					  <overWriteReleases>false</overWriteReleases>
+					  <overWriteSnapshots>false</overWriteSnapshots>
+					  <overWriteIfNewer>true</overWriteIfNewer>
+					</configuration>
+				  </execution>
+				</executions>
+			</plugin>		
+		
+		</plugins>
+	</build>
+	
+</project>
